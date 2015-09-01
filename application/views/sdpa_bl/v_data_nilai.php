@@ -5,7 +5,9 @@ $sem = $this->uri->segment(3);
 <div class="x_title">
   <h2>Data Penilaian</h2>
   <div class="clearfix"></div>
-</div>
+
+  <!-- <div></div> -->
+</div> 
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-latihan"><i class="fa fa-plus"></i> Latihan</button>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-kuis"><i class="fa fa-plus"></i> Kuis</button>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-term"><i class="fa fa-plus"></i> Term</button>
