@@ -82,6 +82,12 @@ class M_sdpa extends CI_Model {
 		$query = $this->db->query("select max(kd_uas) as maxuas from uas ".$where);
 		return $query->result_array();
 	}
+
+	public function cek_max_hasil_akhir($where) {
+		$query = $this->db->query("select max(kd_hasil_akhir) as maxhasilakhir from hasil_akhir ".$where);
+		return $query->result_array();
+	}
+
 	// stop here
 	//DATA Jadwal Guru
 
@@ -123,6 +129,11 @@ class M_sdpa extends CI_Model {
 
 	public function getKuisTerm($table, $where = "") {
 		$data = $this->db->query('select distinct kd_kuis from '.$table.' '.$where);
+		return $data->result_array();
+	}
+
+	public function getHasilAkhir($table, $where = "") {
+		$data = $this->db->query('select distinct kd_hasil_akhir from '.$table.' '.$where);
 		return $data->result_array();
 	}
 

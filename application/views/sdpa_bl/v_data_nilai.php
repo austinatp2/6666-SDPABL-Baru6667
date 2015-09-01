@@ -5,15 +5,27 @@ $sem = $this->uri->segment(3);
 <div class="x_title">
   <h2>Data Penilaian</h2>
   <div class="clearfix"></div>
-
-  <!-- <div></div> -->
-</div> 
+</div>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-latihan"><i class="fa fa-plus"></i> Latihan</button>
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-kuis"><i class="fa fa-plus"></i> Kuis</button>
-<button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-term"><i class="fa fa-plus"></i> Term</button>
+
 <?php
-  foreach ($data_uts as $key_data_uts) {
+  foreach ($data_latihan as $key_data_latihan) {}
+  foreach ($data_kuis as $key_data_kuis) {}
+  foreach ($data_uts as $key_data_uts) {}
+  foreach ($data_uas as $key_data_uas) {}
+  foreach ($data_term as $key_data_term) {}
+
+  if(isset($key_data_latihan['nilai']) OR isset($key_data_kuis['nilai'])) {
+    echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term'><i class='fa fa-plus'></i> Term</button>";
+  } else {
+    echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term' disabled><i class='fa fa-plus'></i> Term</button>";
   }
+    
+?>
+
+<?php
+  
 
   if(isset($key_data_uts['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uts' disabled><i class='fa fa-plus'></i> UTS</button>";
@@ -21,13 +33,19 @@ $sem = $this->uri->segment(3);
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uts'><i class='fa fa-plus'></i> UTS</button>";
   }
 
-  foreach ($data_uas as $key_data_uas) {
-  }
-
   if(isset($key_data_uas['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uas' disabled><i class='fa fa-plus'></i> UAS</button>";
   } else {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uas'><i class='fa fa-plus'></i> UAS</button>";
+  }
+
+?>
+
+<?php
+  if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai'])) {
+    echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir'><i class='fa fa-plus'></i> Nilai Akhir</button>";
+  } else {
+    echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir' disabled><i class='fa fa-plus'></i> Nilai Akhir</button>";
   }
 ?>
 
@@ -76,6 +94,7 @@ $sem = $this->uri->segment(3);
         }
 
         $urut5 = 1;
+        $urut6 = 1;
         foreach ($data_term as $key_data_term) {
           $cek_isi_term = isset($key_data_term['kd_term']) ? $key_data_term['kd_term'] : '';
           $kode5 = "TR000";
@@ -84,6 +103,7 @@ $sem = $this->uri->segment(3);
           $ket_term = $key_data_term['ket'];
           if($key_data_term['kd_term']==$kodeurut5 AND $last==$key_data_term['kd_jadwal']) {
             echo "<th>Term ".$urut5++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_term'></i></a></th>";
+            echo "<th>NDW ".$urut6++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_term'></i></a></th>";
           }
         }
 
@@ -102,6 +122,16 @@ $sem = $this->uri->segment(3);
           $cek_isi_uas = isset($key_data_uas['kd_uas']) ? $key_data_uas['kd_uas'] : '';
           $kode3 = "UA000";
           $kodeurut3 = $kode3.$urut3;
+          if($key_data_uas['kd_uas']==$kodeurut3 AND $last==$key_data_uas['kd_jadwal']) {
+            echo "<th>UAS ".$urut3++."</th>";
+          }
+        }
+
+        $urut7 = 1;
+        foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+          $cek_isi_uas = isset($key_data_hasil_akhir['kd_uas']) ? $key_data_hasil_akhir['kd_uas'] : '';
+          $kode7 = "HA000";
+          $kodeurut7 = $kode7.$urut7;
           if($key_data_uas['kd_uas']==$kodeurut3 AND $last==$key_data_uas['kd_jadwal']) {
             echo "<th>UAS ".$urut3++."</th>";
           }
@@ -153,6 +183,7 @@ $sem = $this->uri->segment(3);
           if($key_data_term['kd_term']==$kodeurut5 AND $key_peserta['nis']==$key_data_term['nis'] AND $key_data_term['kd_jadwal']==$last) {
             $rol5 = isset($key_data_term['nilai']) ? $key_data_term['nilai'] : '0';
             echo "<td>".$rol5."</td>";
+            echo "<td>".$key_data_term['ndw']."</td>";
             $urut5++;
           }
         }
@@ -303,27 +334,9 @@ $sem = $this->uri->segment(3);
       <form class="" action="<?= base_url().'dashboard/isi_term/'.$sem.'/'.$key_peserta['kd_kelas'].'/'.$last; ?>" method="POST">
         <div class="modal-body">
           <table class="table table-bordered table-hover table-compact">
-            <!-- 
-            <thead>
-              <tr>
-                <th>No.</th>
-              </tr>
-            </thead> -->
             <tbody>
 
                 <?php
-                  // foreach ($data_term as $key_data_term) {
-                  
-
-                  //     if(isset($key_data_term['nilai'])) {
-                  //       $a = $key_data_term['ket'];
-                  //       $aa = explode('-', $a);
-                        
-                  //       echo $a;
-                  //     }
-
-                  // }
-
                   foreach ($data_LatihanTerm as $key_data_LatihanTerm) {?>
                       <input type="checkbox" name="select[]" class="icheckbox_flat-green"
                       value="<?php
@@ -340,7 +353,6 @@ $sem = $this->uri->segment(3);
                                         }
                                     }
                                 }
-
                             ?>" 
 
                             <?php
@@ -512,6 +524,28 @@ $sem = $this->uri->segment(3);
         <button type="button" class="btn btn-default" data-dismiss="modal">Batal</button>
         <button type="submit" class="btn btn-success" name="save">Simpan</button>
       </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TAMBAH NILAI AKHIR -->
+<div class="modal fade bs-example-modal" id="add-nilai-akhir" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title" id="myModalLabel2">Nilai Akhir</h4>
+      </div>
+      <form class="" action="<?= base_url().'dashboard/isi_hasil_akhir/'.$sem.'/'.$key_peserta['kd_kelas'].'/'.$last; ?>" method="post">
+        <div class="modal-body">
+          Yakin ingin membuat nilai akhir sekarang ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Lain Kali</button>
+          <button type="submit" class="btn btn-success" name="save">Ya</button>
+        </div>
       </form>
     </div>
   </div>
