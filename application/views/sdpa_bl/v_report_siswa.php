@@ -82,14 +82,16 @@
                           }
 
                           $urut5 = 1;
+                          $urut6 = 1;
                           foreach ($data_term as $key_data_term) {
                             $cek_isi_term = isset($key_data_term['kd_term']) ? $key_data_term['kd_term'] : '';
                             $kode5 = "TR000";
                             $kodeurut5 = $kode5.$urut5;
 
                             $ket_term = $key_data_term['ket'];
-                            if($key_data_term['kd_term']==$kodeurut5 AND $key_data_term['kd_jadwal']==$key_data_term['kd_jadwal']) {
+                            if($key_data_term['kd_term']==$kodeurut5 AND $key_data_term['kd_jadwal']==$key_jadwal['kd_jadwal']) {
                               echo "<th>Term ".$urut5++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_term'></i></a></th>";
+                              echo "<th>NDW ".$urut6++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top'></i></a></th>";
                             }
                           }
 
@@ -110,6 +112,20 @@
                             $kodeurut3 = $kode3.$urut3;
                             if($key_data_uas['kd_uas']==$kodeurut3 && $key_data_uas['kd_jadwal']==$key_jadwal['kd_jadwal']) {
                               echo "<th>UAS ".$urut3++."</th>";
+                            }
+                          }
+
+                          $urut7 = 1;
+                          $urut8 = 1;
+                          foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+                            $cek_isi_hasil_akhir = isset($key_data_hasil_akhir['kd_term']) ? $key_data_hasil_akhir['kd_term'] : '';
+                            $kode7 = "HA000";
+                            $kodeurut7 = $kode7.$urut7;
+
+                            $ket_hasil_akhir = $key_data_hasil_akhir['ndw'];
+                            if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $key_data_hasil_akhir['kd_jadwal']==$key_jadwal['kd_jadwal']) {
+                              echo "<th>Term ".$urut7++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_hasil_akhir'></i></a></th>";
+                              echo "<th>NDW ".$urut8++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top'></i></a></th>";
                             }
                           }
 
@@ -159,6 +175,7 @@
                               if($key_data_term['kd_term']==$kodeurut5 AND $key_peserta['nis']==$key_data_term['nis'] AND $key_data_term['kd_jadwal']==$key_jadwal['kd_jadwal']) {
                                 $rol5 = isset($key_data_term['nilai']) ? $key_data_term['nilai'] : '0';
                                 echo "<td>".$rol5."</td>";
+                                echo "<td>".$key_data_term['ndw']."</td>";
                                 $urut5++;
                               }
                             }
@@ -182,6 +199,19 @@
                                 $rol3 = isset($key_data_uas['nilai']) ? $key_data_uas['nilai'] : '0';
                                 echo "<td>".$rol3."</td>";
                                 $urut3++;
+                              }
+                            }
+
+                            $urut6 = 1;
+                            $urut7 = 1;
+                            foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+                              $kode6 = "HA000";
+                              $kodeurut6 = $kode6.$urut6;
+                              if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut6 AND $key_peserta['nis']==$key_data_hasil_akhir['nis'] AND $key_data_hasil_akhir['kd_jadwal']==$key_jadwal['kd_jadwal']) {
+                                $rol6 = isset($key_data_hasil_akhir['nilai']) ? $key_data_hasil_akhir['nilai'] : '0';
+                                echo "<td>".$rol6."</td>";
+                                echo "<td>".$key_data_hasil_akhir['ndw']."</td>";
+                                $urut6++;
                               }
                             }
                             ?>

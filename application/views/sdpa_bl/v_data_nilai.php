@@ -15,6 +15,9 @@ $sem = $this->uri->segment(3);
   foreach ($data_uts as $key_data_uts) {}
   foreach ($data_uas as $key_data_uas) {}
   foreach ($data_term as $key_data_term) {}
+  foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+    # code...
+  }
 
   if(isset($key_data_latihan['nilai']) OR isset($key_data_kuis['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term'><i class='fa fa-plus'></i> Term</button>";
@@ -42,9 +45,9 @@ $sem = $this->uri->segment(3);
 ?>
 
 <?php
-  if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai'])) {
+  if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai']) AND !isset($key_data_hasil_akhir['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir'><i class='fa fa-plus'></i> Nilai Akhir</button>";
-  } else {
+  } else if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai']) AND isset($key_data_hasil_akhir['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir' disabled><i class='fa fa-plus'></i> Nilai Akhir</button>";
   }
 ?>
@@ -69,7 +72,7 @@ $sem = $this->uri->segment(3);
                 $tooltip_ket_lat = $key_data_ket_latihan['keterangan_latihan'];
             }
           }
-           
+          
           if($key_data_latihan['kd_lat']==$kodeurut AND $last==$key_data_latihan['kd_jadwal']) {
             echo "<th>Latihan ".$urut++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$tooltip_ket_lat'></i></a></th>";
           }

@@ -246,18 +246,17 @@ class Dashboard extends CI_Controller {
     $data_latihan = $this->m_sdpa->get_data("latihan", "where kd_jadwal in ($kd_jdw_now) order by kd_lat");
     $data_kuis    = $this->m_sdpa->get_data("kuis", "where kd_jadwal in ($kd_jdw_now) order by kd_kuis");
     $data_term    = $this->m_sdpa->get_data("term", "where kd_jadwal in ($kd_jdw_now) order by kd_term ");
-    //$data_latihan_term = $this->m_sdpa->get_data("latihan", "where semester='$semester' AND tahun='$tahun' ");
-    //$data_kuis_term    = $this->m_sdpa->get_data("kuis", "where semester='$semester' AND tahun='$tahun' ");
     $data_uas     = $this->m_sdpa->get_data("uas", "where kd_jadwal in ($kd_jdw_now) order by kd_uas");
     $data_uts     = $this->m_sdpa->get_data("uts", "where kd_jadwal in ($kd_jdw_now) order by kd_uts");
-
+    $data_hasil_akhir = $this->m_sdpa->get_data("hasil_akhir", "where kd_jadwal in ($kd_jdw_now) order by kd_hasil_akhir");
 
     $this->template->load('vtemplate_guru','sdpa_bl/v_report_siswa', array(
       'data_latihan' => $data_latihan, 'isi' => $data_guru,'isi_peserta' => $data_peserta,
       'isi_siswa' => $data_siswa, 'data_kuis' => $data_kuis, 'data_uas' => $data_uas,
       'data_uts' => $data_uts, 'data_jadwal' => $data_jadwal, 'data_mapel' => $data_mapel,
       'cekw' => $kelas." - ".$semester." - ".$tahun.$kd_jdw_now, 'data_guru2' => $data_guru2,
-      'isi2' => $data_guru, 'data_ket_latihan' => $data_ket_latihan, 'data_ket_kuis' => $data_ket_kuis, 'data_term' => $data_term
+      'isi2' => $data_guru, 'data_ket_latihan' => $data_ket_latihan, 'data_ket_kuis' => $data_ket_kuis, 'data_term' => $data_term,
+      'data_hasil_akhir' => $data_hasil_akhir
     ));
   }
 
@@ -291,7 +290,7 @@ class Dashboard extends CI_Controller {
         $data_ket_kuis = $this->m_sdpa->get_data("ket_kuis", "where semester='$semester' AND kd_jadwal='$jadwal' ");
         $data_LatihanTerm = $this->m_sdpa->getLatihanTerm("latihan", "where semester='$semester' and kd_jadwal='$jadwal' ");
         $data_KuisTerm = $this->m_sdpa->getKuisTerm("kuis", "where semester='$semester' and kd_jadwal='$jadwal' ");
-        $data_hasil_akhir = $this->m_sdpa->getHasilAkhir("hasil_akhir", "where semester='$semester' and kd_jadwal='$jadwal' ");
+        $data_hasil_akhir = $this->m_sdpa->get_data("hasil_akhir", "where semester='$semester' and kd_jadwal='$jadwal' ");
 
         $this->template->load('vtemplate_guru','sdpa_bl/v_data_nilai', array('data_latihan' => $data_latihan, 'a'=> $jadwal, 'isi' => $data_guru,
         'isi_peserta' => $data_peserta, 'isi_siswa' => $data_siswa, 'data_kuis' => $data_kuis, 'data_uas' => $data_uas, 'data_term' => $data_term,
