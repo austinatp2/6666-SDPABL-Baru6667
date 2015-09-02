@@ -131,12 +131,16 @@ $sem = $this->uri->segment(3);
         }
 
         $urut7 = 1;
+        $urut8 = 1;
         foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
-          $cek_isi_uas = isset($key_data_hasil_akhir['kd_uas']) ? $key_data_hasil_akhir['kd_uas'] : '';
+          $cek_isi_hasil_akhir = isset($key_data_hasil_akhir['kd_hasil_akhir']) ? $key_data_hasil_akhir['kd_hasil_akhir'] : '';
           $kode7 = "HA000";
           $kodeurut7 = $kode7.$urut7;
-          if($key_data_uas['kd_uas']==$kodeurut3 AND $last==$key_data_uas['kd_jadwal']) {
-            echo "<th>UAS ".$urut3++."</th>";
+          if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $last==$key_data_hasil_akhir['kd_jadwal']) {
+            echo "<th>Term Akhir </th>";
+            echo "<th>NDW Akhir </th>";
+            $urut7++;
+            $urut8++;
           }
         }
 
@@ -210,6 +214,21 @@ $sem = $this->uri->segment(3);
             $rol3 = isset($key_data_uas['nilai']) ? $key_data_uas['nilai'] : '0';
             echo "<td>".$rol3."</td>";
             $urut3++;
+          }
+        }
+
+        $urut7 = 1;
+        $urut8 = 1;
+        foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+          $kode7 = "HA000";
+          $kodeurut7 = $kode7.$urut7;
+          if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $key_peserta['nis']==$key_data_hasil_akhir['nis'] AND $key_data_hasil_akhir['kd_jadwal']==$last) {
+            $rol7 = isset($key_data_hasil_akhir['nilai']) ? $key_data_hasil_akhir['nilai'] : '0';
+            $rol8 = isset($key_data_hasil_akhir['ndw']) ? $key_data_hasil_akhir['ndw'] : '0';
+            echo "<td>".$rol7."</td>";
+            echo "<td>".$rol8."</td>";
+            $urut7++;
+            $urut8++;
           }
         }
         ?>

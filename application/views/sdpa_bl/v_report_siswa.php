@@ -91,7 +91,7 @@
                             $ket_term = $key_data_term['ket'];
                             if($key_data_term['kd_term']==$kodeurut5 AND $key_data_term['kd_jadwal']==$key_jadwal['kd_jadwal']) {
                               echo "<th>Term ".$urut5++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_term'></i></a></th>";
-                              echo "<th>NDW ".$urut6++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top'></i></a></th>";
+                              echo "<th>NDW ".$urut6++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_term'></i></a></th>";
                             }
                           }
 
@@ -124,8 +124,10 @@
 
                             $ket_hasil_akhir = $key_data_hasil_akhir['ndw'];
                             if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $key_data_hasil_akhir['kd_jadwal']==$key_jadwal['kd_jadwal']) {
-                              echo "<th>Term ".$urut7++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$ket_hasil_akhir'></i></a></th>";
-                              echo "<th>NDW ".$urut8++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top'></i></a></th>";
+                              echo "<th>Term Akhir </th>";
+                              echo "<th>NDW Akhir</th>";
+                              $urut7++;
+                              $urut8++;
                             }
                           }
 
