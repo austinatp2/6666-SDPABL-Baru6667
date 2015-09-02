@@ -137,7 +137,7 @@ $sem = $this->uri->segment(3);
           $kode7 = "HA000";
           $kodeurut7 = $kode7.$urut7;
           if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $last==$key_data_hasil_akhir['kd_jadwal']) {
-            echo "<th>Term Akhir </th>";
+            echo "<th>Nilai Akhir </th>";
             echo "<th>NDW Akhir </th>";
             $urut7++;
             $urut8++;

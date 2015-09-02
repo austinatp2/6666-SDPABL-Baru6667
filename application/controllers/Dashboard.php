@@ -456,9 +456,9 @@ class Dashboard extends CI_Controller {
               $l = $l+$m[$j];
               $hasil_nilai = $l/$hitung;
 
-              if($hasil_nilai >= 70 AND $hasil_nilai < 80) {
+              if($hasil_nilai < 70 ) {
                 $ndw = 'N';
-              } else if ($hasil_nilai >= 80 AND $hasil_nilai < 90) {
+              } else if ($hasil_nilai < 80) {
                 $ndw = 'D';
               } else {
                 $ndw = 'W';
@@ -646,9 +646,9 @@ class Dashboard extends CI_Controller {
 
         $a_hasil_akhir = ($b_term+$a_uts+$a_uas)/3;
 
-        if($a_hasil_akhir >= 70 AND $a_hasil_akhir < 80) {
+        if($a_hasil_akhir < 70) {
           $ndw = 'N';
-        } else if ($a_hasil_akhir >= 80 AND $a_hasil_akhir < 90) {
+        } else if ($a_hasil_akhir < 80) {
           $ndw = 'D';
         } else {
           $ndw = 'W';

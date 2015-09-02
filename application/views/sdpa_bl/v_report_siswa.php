@@ -124,7 +124,7 @@
 
                             $ket_hasil_akhir = $key_data_hasil_akhir['ndw'];
                             if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $key_data_hasil_akhir['kd_jadwal']==$key_jadwal['kd_jadwal']) {
-                              echo "<th>Term Akhir </th>";
+                              echo "<th>Nilai Akhir </th>";
                               echo "<th>NDW Akhir</th>";
                               $urut7++;
                               $urut8++;
