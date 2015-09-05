@@ -50,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="container">
       <button class="btn btn-info" type="button" name="button" onclick="printDiv('printArea')"><i class="fa fa-print"></i> Cetak Laporan</button>
-      <button class="btn btn-danger" type="button" name="button" onclick="window.close();"><i class="fa fa-print"></i> Tutup Laporan</button>
+      <button class="btn btn-danger" type="button" name="button" onclick="window.close();"><i class="fa fa-close"></i> Tutup Laporan</button>
       <br><br>
     </div>
     <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>

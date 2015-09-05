@@ -120,6 +120,40 @@ class Dashboard extends CI_Controller {
     }
     $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_detil_'.$file_lap, array('data_lap' => $data));
   }
+  
+  public function cetak_nilai_jadwal($semester,$kelas,$jadwal) { //abcde
+    if(isset($kelas) AND isset($jadwal)) {
+      $asd = $this->session->userdata('u_id');
+      $data_guru = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
+      $data_peserta = $this->m_sdpa->get_data("peserta", "where kd_kelas = '$kelas' ");
+      $data_siswa = $this->m_sdpa->get_data("siswa");
+      $data_latihan = $this->m_sdpa->get_data("latihan");
+      $data_mapel = $this->m_sdpa->get_data("mapel");
+      $data_kuis = $this->m_sdpa->get_data("kuis");
+      $data_kelas = $this->m_sdpa->get_data("kelas");
+      $data_jadwal = $this->m_sdpa->get_data("jadwal", "where kd_jadwal='$jadwal' ");
+      $data_uas = $this->m_sdpa->get_data("uas", "where kd_jadwal='$jadwal'  and semester='$semester' ");
+      $data_uts = $this->m_sdpa->get_data("uts", "where kd_jadwal='$jadwal'  and semester='$semester' ");
+      $data_term = $this->m_sdpa->get_data("term", "where kd_jadwal='$jadwal' and semester='$semester' ");
+      $data_term_dist = $this->m_sdpa->get_distinct_term("term", "where kd_jadwal='$jadwal' ");
+      $data_ket_latihan = $this->m_sdpa->get_data("ket_latihan", "where semester='$semester' AND kd_jadwal='$jadwal' ");
+      $data_ket_kuis = $this->m_sdpa->get_data("ket_kuis", "where semester='$semester' AND kd_jadwal='$jadwal' ");
+      $data_LatihanTerm = $this->m_sdpa->getLatihanTerm("latihan", "where semester='$semester' and kd_jadwal='$jadwal' ");
+      $data_KuisTerm = $this->m_sdpa->getKuisTerm("kuis", "where semester='$semester' and kd_jadwal='$jadwal' ");
+
+      $all_data = array('data_latihan'      => $data_latihan,     'data_guru'     => $data_guru,      'term_distinct'     => $data_term_dist,
+                        'isi_peserta'       => $data_peserta,     'isi_siswa'     => $data_siswa,     'data_kuis'         => $data_kuis,
+                        'data_uas'          => $data_uas,         'data_term'     => $data_term,      'data_uts'          => $data_uts,
+                        'data_ket_latihan'  => $data_ket_latihan, 'data_ket_kuis' => $data_ket_kuis,  'data_LatihanTerm'  => $data_LatihanTerm,
+                        'data_KuisTerm'     => $data_KuisTerm,    'data_mapel'    => $data_mapel,      'data_jadwal'      => $data_jadwal,
+                        'data_kelas'        => $data_kelas
+                      );
+
+      $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_nilai_mapel', $all_data);
+    } else {
+      redirect("dashboard");
+    }
+  }
 
   public function master_guru() {
 

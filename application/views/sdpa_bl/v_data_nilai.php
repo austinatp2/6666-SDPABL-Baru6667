@@ -1,7 +1,8 @@
 <?php
 $last = end($this->uri->segments);
 $sem = $this->uri->segment(3);
- ?>
+$kel = $this->uri->segment(4);
+?>
 <div class="x_title">
   <h2>Data Penilaian</h2>
   <div class="clearfix"></div>
@@ -24,11 +25,11 @@ $sem = $this->uri->segment(3);
   } else {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term' disabled><i class='fa fa-plus'></i> Term</button>";
   }
-    
+
 ?>
 
 <?php
-  
+
 
   if(isset($key_data_uts['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uts' disabled><i class='fa fa-plus'></i> UTS</button>";
@@ -51,6 +52,7 @@ $sem = $this->uri->segment(3);
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir' disabled><i class='fa fa-plus'></i> Nilai Akhir</button>";
   }
 ?>
+<a href="<?= base_url();?>dashboard/cetak_nilai_jadwal/<?= $sem."/".$kel."/".$last;?>" target="_blank"><button type="button" class="btn btn-success"><i class="fa fa-print"></i> Cetak Nilai</button></a>
 
 <br>
 <div class="table-responsive">
@@ -72,7 +74,7 @@ $sem = $this->uri->segment(3);
                 $tooltip_ket_lat = $key_data_ket_latihan['keterangan_latihan'];
             }
           }
-          
+
           if($key_data_latihan['kd_lat']==$kodeurut AND $last==$key_data_latihan['kd_jadwal']) {
             echo "<th>Latihan ".$urut++." <a href='javascript:;'><i class='fa fa-question-circle fa-lg' data-toggle='tooltip' data-placement='top' title='$tooltip_ket_lat'></i></a></th>";
           }
@@ -369,21 +371,21 @@ $sem = $this->uri->segment(3);
                                         $kodeurut = $kode.$urut;
                                         if($key_data_latihan['kd_lat']==$key_data_LatihanTerm['kd_lat'] AND $key_peserta['nis']==$key_data_latihan['nis'] AND $key_data_latihan['kd_jadwal']==$last) {
                                           $rol = isset($key_data_latihan['nilai']) ? $key_data_latihan['nilai'] : '0';
-                                          
+
                                           echo $key_peserta['nis'].'/'.$rol.'!'.$key_data_latihan['kd_lat'].',';
                                           $urut++;
                                         }
                                     }
                                 }
-                            ?>" 
+                            ?>"
 
                             <?php
                                   foreach ($data_latihan as $key_data_latihan) {
                                       $kode = 'LT000';
                                       $kodeurut = $kode.$urut;
                                       if($key_data_latihan['kd_lat']==$key_data_LatihanTerm['kd_lat'] AND $key_data_latihan['Trm'] == '1' AND $key_data_latihan['kd_jadwal']==$last) {
-                                        
-                                        
+
+
                                         echo "disabled ";
                                         $urut++;
                                       }
@@ -423,8 +425,8 @@ $sem = $this->uri->segment(3);
                                     $kode = 'QZ000';
                                     $kodeurut = $kode.$urut;
                                     if($key_data_kuis['kd_kuis']==$key_data_KuisTerm['kd_kuis'] AND $key_data_kuis['Trm'] == '1' AND $key_data_kuis['kd_jadwal']==$last) {
-                                      
-                                      
+
+
                                       echo "disabled ";
                                       $urut++;
                                     }

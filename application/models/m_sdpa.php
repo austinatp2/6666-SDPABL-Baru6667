@@ -137,4 +137,8 @@ class M_sdpa extends CI_Model {
 		return $data->result_array();
 	}
 
+	public function get_distinct_term($table, $where = "") {
+		$data = $this->db->query('select distinct ket from '.$table.' '.$where);
+		return $data->result_array();
+	}
 }
