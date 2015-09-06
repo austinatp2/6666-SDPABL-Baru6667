@@ -1,5 +1,5 @@
-<h4 class="text-center">LAPORAN DATA USER</h4>
-<table class="table table-bordered table-condensed">
+<h4 class="text-center" style="text-align: center;">LAPORAN DATA USER</h4>
+<table id="cetak_table" class="table table-bordered table-condensed">
   <thead>
     <tr class="info">
       <th>No.</th>
@@ -20,9 +20,9 @@
           <td><?= $key_lap['id_user']; ?></td>
           <td><?= $key_lap['level']; ?></td>
           <td><?= $key_lap['last_log']; ?></td>
-          <td><?= $key_lap['sess_id']; ?></td>
+          <td style="text-align: left; padding-left:2px;"><?= $key_lap['sess_id']; ?></td>
           <td><?= $key_lap['ip_add']; ?></td>
-          <td><?= $key_lap['browser']; ?></td>
+          <td style="text-align: left; padding-left:2px;"><?= $key_lap['browser']; ?></td>
         </tr>
     <?php }
      ?>

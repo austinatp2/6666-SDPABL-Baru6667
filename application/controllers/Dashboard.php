@@ -55,7 +55,7 @@ class Dashboard extends CI_Controller {
 
   }
 
-  public function cetak_laporan($table = "") {
+  public function cetak_laporan($table="") {
     $data = $this->m_sdpa->get_data($table);
     $file_lap = "";
     $datanya = array();
@@ -75,7 +75,8 @@ class Dashboard extends CI_Controller {
       case 'walikelas':
       $file_lap = "walikelas";
       $data_gur = $this->m_sdpa->get_data("guru");
-      $datanya = array('data_lap' => $data, 'data_gur' => $data_gur);
+      $data_kel = $this->m_sdpa->get_data("kelas");
+      $datanya = array('data_lap' => $data, 'data_gur' => $data_gur, 'data_kel' => $data_kel);
       break;
       case 'peserta':
       $file_lap = "peserta";
@@ -120,7 +121,7 @@ class Dashboard extends CI_Controller {
     }
     $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_detil_'.$file_lap, array('data_lap' => $data));
   }
-  
+
   public function cetak_nilai_jadwal($semester,$kelas,$jadwal) { //abcde
     if(isset($kelas) AND isset($jadwal)) {
       $asd = $this->session->userdata('u_id');

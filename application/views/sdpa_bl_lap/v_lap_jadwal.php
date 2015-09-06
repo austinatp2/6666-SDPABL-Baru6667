@@ -1,16 +1,15 @@
-<h4 class="text-center">LAPORAN DATA JADWAL</h4>
-<table class="table table-bordered table-condensed">
+<h4 class="text-center" style="text-align: center;">LAPORAN DATA JADWAL</h4>
+<table id="cetak_table" class="table table-bordered table-condensed">
   <thead>
     <tr class="info">
       <th>No.</th>
-      <th>Kode Jadwal</th>
+      <th>Jadwal</th>
       <th>Tahun Ajar</th>
       <th>Semester</th>
       <th>Mata Pelajaran</th>
       <th>Guru</th>
       <th>Kelas</th>
       <th>Hari</th>
-      <th>Ruang</th>
     </tr>
   </thead>
   <tbody>
@@ -25,18 +24,17 @@
           <?php
             foreach ($data_map as $key_map) {
               if ($key_map['kd_mapel']==$key_lap['kd_mapel']) {
-                echo "<td>".$key_map['kd_mapel']." - ".$key_map['nm_mapel']."</td>";
+                echo "<td>".$key_map['nm_mapel']."</td>";
               }
             }
             foreach ($data_gur as $key_gur) {
               if ($key_gur['employee_id']==$key_lap['employee_id']) {
-                echo "<td>".$key_gur['employee_id']." - ".$key_gur['nama_guru']."</td>";
+                echo "<td style='text-align: left; padding-left: 2px;'>".$key_gur['nama_guru']."</td>";
               }
             }
            ?>
-          <td><?= $key_lap['kd_kelas']; ?></td>
-          <td><?= $key_lap['hari']; ?></td>
           <td><?= $key_lap['ruang']; ?></td>
+          <td><?= $key_lap['hari']; ?></td>
         </tr>
     <?php }
      ?>

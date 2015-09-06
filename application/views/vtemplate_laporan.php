@@ -11,19 +11,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
   <title>Cetak Laporan</title>
 
-  <link href="<?= base_url(); ?>assets/fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?= base_url(); ?>assets/fonts/css/font-awesome.min.css" rel="stylesheet" media="all">
+  <link href="<?= base_url(); ?>assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <style media="screen">
   body{
     margin-top: 50px;
   }
+  </style>
+
+  <style media="print">
+    * {
+      font-family: sans-serif;
+    }
+    #kopsurat td {
+      border: none;
+    }
+    #cetak_table, th, td{
+      font-size: 10pt;
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    #cetak_table {
+      width: 100%;
+      text-align: center;
+    }
 
   </style>
 </head>
 
 <body>
   <div class="container" id="printArea">
-      <table border="0">
+      <table id="kopsurat" border="0">
         <tr>
           <td rowspan="3">
             <img src="<?= base_url(); ?>assets/images/LOGOUBL.png" alt="budiluhur" width="80px"/>

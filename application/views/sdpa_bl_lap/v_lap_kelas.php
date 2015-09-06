@@ -1,5 +1,5 @@
-<h4 class="text-center">LAPORAN DATA KELAS</h4>
-<table class="table table-bordered table-condensed">
+<h4 class="text-center" style="text-align: center;">LAPORAN DATA KELAS</h4>
+<table id="cetak_table" class="table table-bordered table-condensed">
   <thead>
     <tr class="info">
       <th>No.</th>
