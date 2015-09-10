@@ -22,6 +22,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <style media="print">
     * {
       font-family: sans-serif;
+      font-size: 10pt;
+
     }
     #kopsurat td {
       border: none;
@@ -36,6 +38,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       text-align: center;
     }
 
+    #ket td{
+      border: none;
+      font-size: 8pt;
+      border-collapse: collapse;
+    }
+
+    #ketb {
+      font-size: 8pt;
+    }
+    .tab_info td {
+      /*width: 100%;*/
+      border: none;
+      table-layout: auto;
+    }
+
+    .kiri {
+      float: left;
+    }
+
+    .kanan {
+      float: right;
+    }
   </style>
 </head>
 
