@@ -2,6 +2,7 @@
 $last = end($this->uri->segments);
 $sem = $this->uri->segment(3);
 $kel = $this->uri->segment(4);
+$jmllat = 0;
 ?>
 <h4 class="text-center" style="text-align: center;">LAPORAN DATA NILAI</h4>
 <div class="infotable">
@@ -96,6 +97,7 @@ $kel = $this->uri->segment(4);
       }
 
       $urut5 = 1;
+      $urut6 = 1;
       foreach ($data_term as $key_data_term) {
         $cek_isi_term = isset($key_data_term['kd_term']) ? $key_data_term['kd_term'] : '';
         $kode5 = "TR000";
@@ -104,6 +106,7 @@ $kel = $this->uri->segment(4);
         $ket_term = $key_data_term['ket'];
         if($key_data_term['kd_term']==$kodeurut5 AND $last==$key_data_term['kd_jadwal']) {
           echo "<th>Tr. ".$urut5++."</th>";
+          echo "<th>NDW</th>";
         }
       }
 
@@ -124,6 +127,20 @@ $kel = $this->uri->segment(4);
         $kodeurut3 = $kode3.$urut3;
         if($key_data_uas['kd_uas']==$kodeurut3 AND $last==$key_data_uas['kd_jadwal']) {
           echo "<th>UAS</th>"; $urut3++;
+        }
+      }
+
+      $urut7 = 1;
+      // $urut8 = 1;
+      foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+        $cek_isi_hasil_akhir = isset($key_data_hasil_akhir['kd_hasil_akhir']) ? $key_data_hasil_akhir['kd_hasil_akhir'] : '';
+        $kode7 = "HA000";
+        $kodeurut7 = $kode7.$urut7;
+        if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $last==$key_data_hasil_akhir['kd_jadwal']) {
+          echo "<th>NA</th>";
+          echo "<th>NDW</th>";
+          $urut7++;
+          // $urut8++;
         }
       }
 
@@ -173,6 +190,7 @@ $kel = $this->uri->segment(4);
           if($key_data_term['kd_term']==$kodeurut5 AND $key_peserta['nis']==$key_data_term['nis'] AND $key_data_term['kd_jadwal']==$last) {
             $rol5 = isset($key_data_term['nilai']) ? $key_data_term['nilai'] : '0';
             echo "<td>".$rol5."</td>";
+            echo "<td>".$key_data_term['ndw']."</td>";
             $urut5++;
           }
         }
@@ -198,6 +216,22 @@ $kel = $this->uri->segment(4);
             $urut3++;
           }
         }
+
+        $urut7 = 1;
+        // $urut8 = 1;
+        foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
+          $kode7 = "HA000";
+          $kodeurut7 = $kode7.$urut7;
+          if($key_data_hasil_akhir['kd_hasil_akhir']==$kodeurut7 AND $key_peserta['nis']==$key_data_hasil_akhir['nis'] AND $key_data_hasil_akhir['kd_jadwal']==$last) {
+            $rol7 = isset($key_data_hasil_akhir['nilai']) ? $key_data_hasil_akhir['nilai'] : '0';
+            $rol8 = isset($key_data_hasil_akhir['ndw']) ? $key_data_hasil_akhir['ndw'] : '0';
+            echo "<td>".$rol7."</td>";
+            echo "<td>".$rol8."</td>";
+            $urut7++;
+            // $urut8++;
+          }
+        }
+
         ?>
       </tr>
       <?php
@@ -210,7 +244,6 @@ $kel = $this->uri->segment(4);
 $nokuis = 1;
 $nolat = 1;
 $noterm = 1;
-// echo "<table>";
 foreach ($data_ket_latihan as $key_data_ket_latihan) {
   if($key_data_ket_latihan['kd_jadwal']==$last) {
     echo "<tr><td>Lt. ".$nolat."</td><td> : </td><td>".$key_data_ket_latihan['keterangan_latihan']."</td>";
@@ -235,4 +268,4 @@ foreach ($term_distinct as $key_term) {
 </table>
 
 <hr>
-<small><i id="ketb">Lt. = Latihan || Qz. = Kuis || Tr. = Term </i></small>
+<small><i id="ketb">Lt. = Latihan || Qz. = Kuis || Tr. = Term || NA = Nilai Akhir</i></small>

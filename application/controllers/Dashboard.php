@@ -104,6 +104,21 @@ class Dashboard extends CI_Controller {
     $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_'.$file_lap, $datanya);
   }
 
+  public function cetak_isi_kelas($kd="") {
+    $data_kelas = $this->m_sdpa->get_data("kelas","where kd_kelas='$kd'");
+    $data_walkel = $this->m_sdpa->get_data("walikelas","where Kd_kelas='$kd'");
+    $data_peserta = $this->m_sdpa->get_data("peserta","where kd_kelas='$kd'");
+    $data_siswa = $this->m_sdpa->get_data("siswa");
+    $data_guru = $this->m_sdpa->get_data("guru");
+    $datanya = array(
+      'data_kelas'    => $data_kelas,   'data_wali'   => $data_walkel,
+      'data_peserta'  => $data_peserta, 'data_siswa'  => $data_siswa,
+      'data_guru'     => $data_guru
+    );
+
+    $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_isi_kelas', $datanya);
+  }
+
   public function cetak_detil($table="", $id="") {
     $file_lap = "";
     switch ($table) {
@@ -141,13 +156,14 @@ class Dashboard extends CI_Controller {
       $data_ket_kuis = $this->m_sdpa->get_data("ket_kuis", "where semester='$semester' AND kd_jadwal='$jadwal' ");
       $data_LatihanTerm = $this->m_sdpa->getLatihanTerm("latihan", "where semester='$semester' and kd_jadwal='$jadwal' ");
       $data_KuisTerm = $this->m_sdpa->getKuisTerm("kuis", "where semester='$semester' and kd_jadwal='$jadwal' ");
+      $data_hasil_akhir = $this->m_sdpa->get_data("hasil_akhir", "where semester='$semester' and kd_jadwal='$jadwal' ");
 
       $all_data = array('data_latihan'      => $data_latihan,     'data_guru'     => $data_guru,      'term_distinct'     => $data_term_dist,
                         'isi_peserta'       => $data_peserta,     'isi_siswa'     => $data_siswa,     'data_kuis'         => $data_kuis,
                         'data_uas'          => $data_uas,         'data_term'     => $data_term,      'data_uts'          => $data_uts,
                         'data_ket_latihan'  => $data_ket_latihan, 'data_ket_kuis' => $data_ket_kuis,  'data_LatihanTerm'  => $data_LatihanTerm,
-                        'data_KuisTerm'     => $data_KuisTerm,    'data_mapel'    => $data_mapel,      'data_jadwal'      => $data_jadwal,
-                        'data_kelas'        => $data_kelas
+                        'data_KuisTerm'     => $data_KuisTerm,    'data_mapel'    => $data_mapel,     'data_jadwal'      => $data_jadwal,
+                        'data_kelas'        => $data_kelas,       'data_hasil_akhir' => $data_hasil_akhir
                       );
 
       $this->template->load('vtemplate_laporan','sdpa_bl_lap/v_lap_nilai_mapel', $all_data);
@@ -241,6 +257,19 @@ class Dashboard extends CI_Controller {
     $this->template->load('vtemplate_guru','sdpa_bl/v_penilaian_guru', array('isi' => $data, 'isi2' => $data2));
   }
 
+  public function pilih_tahun_lap() {
+
+    $this->template->load('vtemplate','sdpa_bl/v_pilih_tahun_lap', array());
+  }
+
+  public function laporan($item="") {
+    $thn = $_GET['thn_ajar'];
+    $sms = $_GET['semester'];
+    $data_item = $this->m_sdpa->get_data($item, "where thn_ajar= '$thn' and semester='$sms' ");
+    $data_peserta = $this->m_sdpa->get_data("peserta", "where thn_ajar= '$thn' ");
+    $data_siswa = $this->m_sdpa->get_data("siswa");
+    $this->template->load('vtemplate','sdpa_bl/v_lap_kelas', array('data_item' => $data_item, 'data_peserta' => $data_peserta, 'data_siswa' => $data_siswa));
+  }
   public function tahun_wali() {
     $asd    = $this->session->userdata('u_id');
     $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");

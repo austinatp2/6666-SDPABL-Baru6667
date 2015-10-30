@@ -1,8 +1,8 @@
 <div class="x_title">
-  <h2>Penilaian</h2>
+  <h2>Pilih Tahun Ajaran & Semester</h2>
   <div class="clearfix"></div>
 </div>
-  <form class="form-horizontal form-label-left" method="get" action="<?= base_url(); ?>dashboard/daftar_jadwal">
+  <form class="form-horizontal form-label-left" method="get" action="<?= base_url(); ?>dashboard/laporan/kelas">
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Ajaran</label>
       <div class="col-md-2 col-sm-9 col-xs-12">

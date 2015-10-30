@@ -29,9 +29,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       border: none;
     }
     #cetak_table, th, td{
-      font-size: 10pt;
+      font-size: 8pt;
       border: 1px solid black;
       border-collapse: collapse;
+      /*padding: 4px;*/
     }
     #cetak_table {
       width: 100%;
