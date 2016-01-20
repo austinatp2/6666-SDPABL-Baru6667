@@ -37,7 +37,7 @@
 
             <td style="text-align:center"><?= $no++ ?></td>
             <td style="text-align:center"><?= $key['NIS']; ?></td>
-            <td style="text-align:center"><?= $key['Nama']; ?></td>
+            <td ><?= $key['Nama']; ?></td>
             <td style="text-align:center"><?= $key['Jenis_kelamin']; ?></td>
             <td style="text-align:center"><?= $key['Agama']; ?></td>
 
