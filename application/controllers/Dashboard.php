@@ -276,12 +276,16 @@ class Dashboard extends CI_Controller {
   public function list_rapor_siswa() {
 
     $asd    = $this->session->userdata('u_id');
+    $tahun        = isset($_POST['thn_ajar']) ? $_POST['thn_ajar'] : '' ;
+    $semester     = isset($_POST['semester']) ? $_POST['semester'] : '' ;
+
     $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
     $data4  = $this->m_sdpa->get_data_jadwal_guru("where a.employee_id=b.employee_id AND a.kd_mapel=c.kd_mapel AND a.kd_kelas=d.kd_kelas AND a.employee_id = '$asd' ");
-    $data2  =$this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
+    $data2  = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
     $data3  = $this->m_sdpa->getWalikelasDataSiswa("where a.employee_id=e.Employee_id and b.kd_kelas=d.kd_kelas and c.NIS=d.nis and d.kd_kelas=e.Kd_kelas and e.Employee_id='$asd' ");
+    $data5  = $this->m_sdpa->getWalikelasRaportSiswa("where a.employee_id=e.Employee_id and b.kd_kelas=d.kd_kelas and c.NIS=d.nis and d.kd_kelas=e.Kd_kelas and f.kd_jadwal=h.kd_jadwal and g.kd_mapel=h.kd_mapel and f.nis=c.nis and f.tahun='$tahun' and f.semester='$semester' and e.Employee_id='$asd' ");
 
-    $this->template->load('vtemplate_guru','sdpa_bl/v_lihat_siswa_rapor', array('isi' => $data, 'isi4' => $data4, 'isi3' => $data3, 'isi2' => $data2));
+    $this->template->load('vtemplate_guru','sdpa_bl/v_lihat_siswa_rapor', array('isi' => $data, 'isi4' => $data4, 'isi3' => $data3, 'isi2' => $data2, 'isi5' => $data5));
 
   }
 
@@ -290,7 +294,7 @@ class Dashboard extends CI_Controller {
     $asd    = $this->session->userdata('u_id');
     $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
     $data4  = $this->m_sdpa->get_data_jadwal_guru("where a.employee_id=b.employee_id AND a.kd_mapel=c.kd_mapel AND a.kd_kelas=d.kd_kelas AND a.employee_id = '$asd' ");
-    $data2  =$this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
+    $data2  = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
     $data3  = $this->m_sdpa->getWalikelasDataSiswa("where a.employee_id=e.Employee_id and b.kd_kelas=d.kd_kelas and c.NIS=d.nis and d.kd_kelas=e.Kd_kelas and e.Employee_id='$asd' ");
 
     $this->template->load('vtemplate_guru','sdpa_bl/v_lihat_siswa_walikelas', array('isi' => $data, 'isi4' => $data4, 'isi3' => $data3, 'isi2' => $data2));
@@ -330,7 +334,7 @@ class Dashboard extends CI_Controller {
       $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
       $data2  = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
       $this->template->load('vtemplate_guru','sdpa_bl/v_pilthrap', array('isi' => $data, 'isi2' => $data2));
-    }
+  }
 
   public function rapor_siswa() {
     $kd_jdw_now   = "";
