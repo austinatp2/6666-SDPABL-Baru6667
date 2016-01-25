@@ -318,14 +318,14 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Kode Jadwal</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <input name="kd_jadwal" type="text" class="form-control">
+              <input name="kd_jadwal" type="text" class="form-control" required>
             </div>
           </div>
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Tahun Ajar</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="thn_ajar" class="form-control">
-                  <option>Pilih Tahun Ajar</option>
+              <select name="thn_ajar" class="form-control" required>
+                  <option value="" disabled selected hidden>Pilih Tahun Ajar</option>
 
                   <?php
                       for ($i=2010; $i<=2020 ; $i++) {
@@ -340,8 +340,8 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Semester</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="semester" class="form-control" >
-                <option>Pilih Semester</option>
+              <select name="semester" class="form-control" required>
+                <option value="" disabled selected hidden>Pilih Semester</option>
                 <option value="Gasal">Gasal</option>
                 <option value="Genap">Genap</option>
               </select>
@@ -350,8 +350,8 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Kode Mapel</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="kd_mapel"  class="select2_single form-control" >
-              <option>Pilih Kode Mapel</option>
+              <select name="kd_mapel"  class="select2_single form-control" required>
+              <option value="" disabled selected hidden>Pilih Kode Mapel</option>
               <?php foreach ($isi2 as $key2): ?>
                 <option value="<?= $key2['kd_mapel'];?>"><?= $key2['kd_mapel'].' - '.$key2['nm_mapel'];?></option>
               <?php endforeach; ?>
@@ -361,8 +361,8 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Emp. ID</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="employee_id" class="form-control">
-                  <option>Pilih Employee ID</option>
+              <select name="employee_id" class="form-control" required>
+                  <option value="" disabled selected hidden>Pilih Employee ID</option>
 
                   <?php
 
@@ -378,8 +378,8 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Kode Kelas</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="kd_kelas" class="form-control">
-                  <option>Pilih Kode Kelas</option>
+              <select name="kd_kelas" class="form-control" required>
+                  <option value="" disabled selected hidden>Pilih Kode Kelas</option>
 
                   <?php
 
@@ -395,8 +395,8 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Hari</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <select name="hari" class="form-control" >
-                <option>Pilih Hari</option>
+              <select name="hari" class="form-control" required>
+                <option value="" disabled selected hidden>Pilih Hari</option>
                 <option value="Senin">Senin</option>
                 <option value="Selasa">Selasa</option>
                 <option value="Rabu">Rabu</option>
@@ -408,7 +408,7 @@
           <div class="form-group">
             <label class="control-label col-md-4 col-sm-3 col-xs-12">Ruang</label>
             <div class="col-md-8 col-sm-9 col-xs-12">
-              <input name="ruang" type="text" class="form-control">
+              <input name="ruang" type="text" class="form-control" required>
             </div>
           </div>
         </div>

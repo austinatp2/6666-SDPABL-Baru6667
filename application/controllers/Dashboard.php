@@ -172,16 +172,18 @@ class Dashboard extends CI_Controller {
     }
   }
 
-  public function cetak_nilai_rapor($semester,$kelas,$jadwal) { //abcde
-    if(isset($kelas) AND isset($jadwal)) {
+  public function cetak_nilai_rapor($nis,$semester,$thn1,$thn2) { //abcde
+    if(isset($nis) AND isset($semester) AND isset($thn1) AND isset($thn2)) {
+      $tahun_ajar = $thn1.'/'.$thn2;
       $asd = $this->session->userdata('u_id');
       $data_guru = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
-      $data_peserta = $this->m_sdpa->get_data("peserta", "where kd_kelas = '$kelas' ");
-      $data_siswa = $this->m_sdpa->get_data("siswa");
+      $data_peserta = $this->m_sdpa->get_data("peserta", "where nis = '$nis' and thn_ajar='$tahun_ajar'");
+      $DP = $data_peserta[0]['kd_kelas'];
+      $data_siswa = $this->m_sdpa->get_data("siswa", "where nis = '$nis' ");
       $data_latihan = $this->m_sdpa->get_data("latihan");
       $data_mapel = $this->m_sdpa->get_data("mapel");
       $data_kuis = $this->m_sdpa->get_data("kuis");
-      $data_kelas = $this->m_sdpa->get_data("kelas");
+      $data_kelas = $this->m_sdpa->get_data("kelas" , "where kd_kelas='$DP'");
       $data_jadwal = $this->m_sdpa->get_data("jadwal", "where kd_jadwal='$jadwal' ");
       $data_uas = $this->m_sdpa->get_data("uas", "where kd_jadwal='$jadwal'  and semester='$semester' ");
       $data_uts = $this->m_sdpa->get_data("uts", "where kd_jadwal='$jadwal'  and semester='$semester' ");
@@ -273,16 +275,19 @@ class Dashboard extends CI_Controller {
 
   }
 
-  public function list_rapor_siswa() {
-
+  public function list_rapor_siswa($tahun='', $semester='') {
+    $tahun     = isset($_GET['thn_ajar']) ? $_GET['thn_ajar'] : '' ;
+    $semester  = isset($_GET['semester']) ? $_GET['semester'] : '' ;
     $asd    = $this->session->userdata('u_id');
     $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
-    $data4  = $this->m_sdpa->get_data_jadwal_guru("where a.employee_id=b.employee_id AND a.kd_mapel=c.kd_mapel AND a.kd_kelas=d.kd_kelas AND a.employee_id = '$asd' ");
-    $data2  =$this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
+    // $data4  = $this->m_sdpa->get_data_jadwal_guru("where a.employee_id=b.employee_id AND a.kd_mapel=c.kd_mapel AND a.kd_kelas=d.kd_kelas AND a.employee_id = '$asd' ");
+    $data2  = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
     $data3  = $this->m_sdpa->getWalikelasDataSiswa("where a.employee_id=e.Employee_id and b.kd_kelas=d.kd_kelas and c.NIS=d.nis and d.kd_kelas=e.Kd_kelas and e.Employee_id='$asd' ");
 
-    $this->template->load('vtemplate_guru','sdpa_bl/v_lihat_siswa_rapor', array('isi' => $data, 'isi4' => $data4, 'isi3' => $data3, 'isi2' => $data2));
-
+    $this->template->load(
+      'vtemplate_guru','sdpa_bl/v_lihat_siswa_rapor',
+      array('isi' => $data, 'isi3' => $data3, 'isi2' => $data2, 'thun_ajr' => $tahun, 'sms' => $semester)
+      );
   }
 
   public function master_walikelas_data_siswa() {
@@ -290,7 +295,7 @@ class Dashboard extends CI_Controller {
     $asd    = $this->session->userdata('u_id');
     $data   = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
     $data4  = $this->m_sdpa->get_data_jadwal_guru("where a.employee_id=b.employee_id AND a.kd_mapel=c.kd_mapel AND a.kd_kelas=d.kd_kelas AND a.employee_id = '$asd' ");
-    $data2  =$this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
+    $data2  = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
     $data3  = $this->m_sdpa->getWalikelasDataSiswa("where a.employee_id=e.Employee_id and b.kd_kelas=d.kd_kelas and c.NIS=d.nis and d.kd_kelas=e.Kd_kelas and e.Employee_id='$asd' ");
 
     $this->template->load('vtemplate_guru','sdpa_bl/v_lihat_siswa_walikelas', array('isi' => $data, 'isi4' => $data4, 'isi3' => $data3, 'isi2' => $data2));
@@ -446,10 +451,10 @@ class Dashboard extends CI_Controller {
         $data_guru = $this->m_sdpa->get_data("guru", "where employee_id = '$asd' ");
         $data_peserta = $this->m_sdpa->get_data("peserta", "where kd_kelas = '$kelas' ");
         $data_siswa = $this->m_sdpa->get_data("siswa");
-        $data_latihan = $this->m_sdpa->get_data("latihan");
-        $data_kuis = $this->m_sdpa->get_data("kuis");
-        $data_uas = $this->m_sdpa->get_data("uas", "where kd_jadwal='$jadwal'  and semester='$semester' ");
-        $data_uts = $this->m_sdpa->get_data("uts", "where kd_jadwal='$jadwal'  and semester='$semester' ");
+        $data_latihan = $this->m_sdpa->get_data("latihan","where kd_jadwal='$jadwal' and semester='$semester' ");
+        $data_kuis = $this->m_sdpa->get_data("kuis","where kd_jadwal='$jadwal' and semester='$semester' ");
+        $data_uas = $this->m_sdpa->get_data("uas", "where kd_jadwal='$jadwal' and semester='$semester' ");
+        $data_uts = $this->m_sdpa->get_data("uts", "where kd_jadwal='$jadwal' and semester='$semester' ");
         $data_term = $this->m_sdpa->get_data("term", "where kd_jadwal='$jadwal' and semester='$semester' ");
         $data2 = $this->m_sdpa->get_data("guru", "where employee_id in (select b.Employee_id from walikelas b) and employee_id = '$asd'");
         $data_ket_latihan = $this->m_sdpa->get_data("ket_latihan", "where semester='$semester' AND kd_jadwal='$jadwal' ");
@@ -882,15 +887,18 @@ class Dashboard extends CI_Controller {
       );
 
       $res = $this->m_sdpa->insert_data('guru', $data_insert);
-      if ($res >= 1) {
+      if ($res == 1) {
         $notif = '<div class="alert alert-info alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
         </button><p align="center">Tambah data SUKSES!</p></div>';
-        // $notif = "<h2 class='jumbotron'> Tambah kelas SUKSES! </h2>";
+      } elseif($res==1062) {
+        $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+        </button>Tambah data GAGAL! Employee_id sudah ada!</div>';
       } else {
         $notif = '<div class="alert alert-danger alert-dismissible fade in" role="alert">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
-        </button>Tambah data GAGAL!</div>';
+        </button>Tambah data GAGAL! '.$res.'</div>';
         // $notif = "<h2 class='jumbotron'> Tambah kelas GAGAL! </h2>";
       }
       $this->session->set_flashdata('pesan', $notif);

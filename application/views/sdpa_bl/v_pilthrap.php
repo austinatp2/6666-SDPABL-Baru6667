@@ -2,7 +2,7 @@
   <h2>Rapor Siswa</h2>
   <div class="clearfix"></div>
 </div>
-  <form class="form-horizontal form-label-left" method="post" action="<?= base_url(); ?>dashboard/list_rapor_siswa" target="">
+  <form class="form-horizontal form-label-left" method="get" action="<?= base_url(); ?>dashboard/list_rapor_siswa">
     <div class="form-group">
       <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Ajaran</label>
       <div class="col-md-2 col-sm-9 col-xs-12">

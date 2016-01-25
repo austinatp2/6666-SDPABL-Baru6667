@@ -1,7 +1,9 @@
-<?php foreach ($isi3 as $key9) {} ?> 
+<?php
+    foreach ($isi3 as $key9) {}
+?> 
     
 <div class="x_title">
-  <h2>Daftar Siswa - Kelas <?= $key9['nm_kelas']; ?> - <?= $key9['kd_kelas']; ?></h2>
+  <h2>Daftar Rapor || Kelas : <?= $key9['nm_kelas']; ?> (<?= $key9['kd_kelas']; ?>)</h2>
   <div class="clearfix"></div>
 </div>
 
@@ -42,7 +44,7 @@
             <td style="text-align:center"><?= $key['Agama']; ?></td>
 
             <td align="center" style="padding: 6px;">
-                <a href="<?=base_url(); ?>dashboard/cetak_nilai_rapor/<?= $key9['kd_kelas'].'/'.$key['NIS']; ?>" type="button" class="btn btn-primary btn-sm">
+                <a href="<?=base_url(); ?>dashboard/cetak_nilai_rapor/<?=$key['NIS']; echo '/';print_r($sms); echo '/';print_r($thun_ajr); ?>" type="button" class="btn btn-primary btn-sm" target="_blank">
                   <i class="fa fa-search"></i> Lihat Rapor
                 </a>
             </td>
@@ -52,3 +54,9 @@
     ?>
     </tbody>
 </table>
+<?php 
+// echo "<pre>";
+//     print_r($isi3);
+// echo "</pre>";
+// print_r($thun_ajr);
+ ?>

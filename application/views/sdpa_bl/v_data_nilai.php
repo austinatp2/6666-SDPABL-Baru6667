@@ -11,14 +11,15 @@ $kel = $this->uri->segment(4);
 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#add-kuis"><i class="fa fa-plus"></i> Kuis</button>
 
 <?php
+// echo "<pre>";
+// print_r($data_kuis);
+// echo "</pre>";
   foreach ($data_latihan as $key_data_latihan) {}
   foreach ($data_kuis as $key_data_kuis) {}
   foreach ($data_uts as $key_data_uts) {}
   foreach ($data_uas as $key_data_uas) {}
   foreach ($data_term as $key_data_term) {}
-  foreach ($data_hasil_akhir as $key_data_hasil_akhir) {
-    # code...
-  }
+  foreach ($data_hasil_akhir as $key_data_hasil_akhir) {}
 
   if(isset($key_data_latihan['nilai']) OR isset($key_data_kuis['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term'><i class='fa fa-plus'></i> Term</button>";
@@ -26,26 +27,18 @@ $kel = $this->uri->segment(4);
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-term' disabled><i class='fa fa-plus'></i> Term</button>";
   }
 
-?>
-
-<?php
-
-
-  if(isset($key_data_uts['nilai'])) {
+  if(isset($key_data_uts['nilai']) OR !isset($key_data_term['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uts' disabled><i class='fa fa-plus'></i> UTS</button>";
   } else {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uts'><i class='fa fa-plus'></i> UTS</button>";
   }
 
-  if(isset($key_data_uas['nilai'])) {
+  if(isset($key_data_uas['nilai']) OR !isset($key_data_uts['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uas' disabled><i class='fa fa-plus'></i> UAS</button>";
   } else {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-uas'><i class='fa fa-plus'></i> UAS</button>";
   }
 
-?>
-
-<?php
   if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai']) AND !isset($key_data_hasil_akhir['nilai'])) {
     echo "<button type='button' class='btn btn-success' data-toggle='modal' data-target='#add-nilai-akhir'><i class='fa fa-plus'></i> Nilai Akhir</button>";
   } else if(isset($key_data_term['nilai']) AND isset($key_data_uts['nilai']) AND isset($key_data_uas['nilai']) AND isset($key_data_hasil_akhir['nilai'])) {
@@ -88,7 +81,6 @@ $kel = $this->uri->segment(4);
 
           foreach ($data_ket_kuis as $key_data_ket_kuis) {
             if($key_data_ket_kuis['kd_ket_kuis']==$kodeurut2) {
-                //$tooltip_ket_kuis = $key_data_ket_kuis['keterangan_kuis'];
                 $tooltip_ket_kuis = $key_data_ket_kuis['keterangan_kuis'];
             }
           }
@@ -253,7 +245,7 @@ $kel = $this->uri->segment(4);
       </div>
       <form class="" action="<?= base_url().'dashboard/isi_latihan/'.$sem.'/'.$key_peserta['kd_kelas'].'/'.$last; ?>" method="post">
         <div class="modal-body">
-          <div style="padding-bottom:7%;"><input type="text" name="keterangan" class="form-control col-md-7 col-xs-12" placeholder=" Keterangan..."></div>
+          <div style="padding-bottom:7%;"><input type="text" name="keterangan" class="form-control col-md-7 col-xs-12" placeholder=" Keterangan..." required></div>
           <table class="table table-bordered table-hover table-compact">
             <thead>
               <tr>
@@ -277,7 +269,7 @@ $kel = $this->uri->segment(4);
                     }
                   }
                   ?>
-                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" class="form-control"></td>
+                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" min="10" max="100" class="form-control"></td>
                 </tr>
                 <?php
               }
@@ -305,7 +297,7 @@ $kel = $this->uri->segment(4);
       </div>
       <form class="" action="<?= base_url().'dashboard/isi_kuis/'.$sem.'/'.$key_peserta['kd_kelas'].'/'.$last; ?>" method="post">
         <div class="modal-body">
-          <div style="padding-bottom:7%;"><input type="text" name="keterangan" class="form-control col-md-7 col-xs-12" placeholder=" Keterangan..."></div>
+          <div style="padding-bottom:7%;"><input type="text" name="keterangan" class="form-control col-md-7 col-xs-12" placeholder=" Keterangan..." required></div>
           <table class="table table-bordered table-hover table-compact">
             <thead>
               <tr>
@@ -329,7 +321,7 @@ $kel = $this->uri->segment(4);
                     }
                   }
                   ?>
-                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" class="form-control"></td>
+                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" min="10" max="100" class="form-control"></td>
                 </tr>
                 <?php
               }
@@ -485,7 +477,7 @@ $kel = $this->uri->segment(4);
                     }
                   }
                   ?>
-                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" class="form-control"></td>
+                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" min="10" max="100" class="form-control"></td>
                 </tr>
                 <?php
               }
@@ -536,7 +528,7 @@ $kel = $this->uri->segment(4);
                     }
                   }
                   ?>
-                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" class="form-control"></td>
+                  <td><input type="number" name="<?= $key_peserta['nis'];?>" value="0" min="10" max="100" class="form-control"></td>
                 </tr>
                 <?php
               }

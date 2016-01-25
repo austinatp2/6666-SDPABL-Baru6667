@@ -81,7 +81,7 @@
         </div>
         <!-- /modal -->
 
-        <!-- ediy siswa -->
+        <!-- edit siswa -->
         <div class="modal fade bs-example-modal-lg" id="edit-sis<?= $key['NIS']; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
@@ -111,7 +111,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">NISN</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="nisn" type="text" class="form-control" value="<?= $key['NISN']; ?>">
+                                                        <input name="nisn" type="text" class="form-control" value="<?= $key['NISN']; ?>" required>
                                                     </div>
                                                 </div>
 
@@ -119,7 +119,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="nama" type="text" class="form-control" value="<?= $key['Nama']; ?>">
+                                                        <input name="nama" type="text" class="form-control" value="<?= $key['Nama']; ?>" required>
                                                     </div>
                                                 </div>
 
@@ -127,7 +127,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tmpt Lahir</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="tempat_lahir" type="text" class="form-control" value="<?= $key['Tempat_lahir']; ?>" placeholder=" Contoh: Jakarta">
+                                                        <input name="tempat_lahir" type="text" class="form-control" value="<?= $key['Tempat_lahir']; ?>" placeholder=" Contoh: Jakarta" required>
                                                     </div>
                                                 </div>
 
@@ -135,7 +135,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Tgl Lahir</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="tanggal_lahir" type="date" class="form-control" value="<?= $key['Tanggal_lahir']; ?>">
+                                                        <input name="tanggal_lahir" type="date" class="form-control" value="<?= $key['Tanggal_lahir']; ?>" required>
                                                     </div>
                                                 </div>
 
@@ -143,7 +143,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Agama</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <select name="agama" class="form-control"  value="<?= $key['Agama']; ?>">
+                                                        <select name="agama" class="form-control"  value="<?= $key['Agama']; ?>" required>
                                                             <option value="Islam" <?php if($key['Agama'] == 'Islam') echo 'selected="selected"'; ?>>Islam</option>
                                                             <option value="Kristen" <?php if($key['Agama'] == 'Kristen') echo 'selected="selected"'; ?>>Kristen Protestan</option>
                                                             <option value="Katolik" <?php if($key['Agama'] == 'Katolik') echo 'selected="selected"'; ?>>Kristen Katolik</option>
@@ -159,7 +159,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Jns Kelamin</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <select name="jenis_kelamin" class="form-control" >
+                                                        <select name="jenis_kelamin" class="form-control" required>
                                                             <option value="Laki-Laki" <?php if($key['Jenis_kelamin'] == 'Laki-Laki') echo 'selected="selected"'; ?>>Laki-Laki</option>
                                                             <option value="Perempuan" <?php if($key['Jenis_kelamin'] == 'Perempuan') echo 'selected="selected"'; ?>>Perempuan</option>
                                                         </select>
@@ -170,7 +170,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Foto</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="filefoto" type="file" class="form-control">
+                                                        <input name="filefoto" type="file" class="form-control" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -180,7 +180,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Ayah</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="nama_ayah" type="text" class="form-control" value="<?= $key['Nama_ayah']; ?>">
+                                                        <input name="nama_ayah" type="text" class="form-control" value="<?= $key['Nama_ayah']; ?>" required>
                                                     </div>
                                                 </div>
 
@@ -188,7 +188,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Ibu</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="nama_ibu" type="text" class="form-control" value="<?= $key['Nama_ibu']; ?>">
+                                                        <input name="nama_ibu" type="text" class="form-control" value="<?= $key['Nama_ibu']; ?>" required>
                                                     </div>
                                                 </div>
 
@@ -196,7 +196,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Kwn</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="kewarganegaraan" type="text" class="form-control" value="<?= $key['Kewarganegaraan']; ?>" placeholder=' Contoh: Indonesia'>
+                                                        <input name="kewarganegaraan" type="text" class="form-control" value="<?= $key['Kewarganegaraan']; ?>" placeholder=' Contoh: Indonesia' required>
                                                     </div>
                                                 </div>
 
@@ -204,7 +204,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Warga</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <select name="warga_negara" class="form-control" >
+                                                        <select name="warga_negara" class="form-control" required>
                                                             <option value="WNI" <?php if($key['Warga_negara'] == 'WNI') echo 'selected="selected"'; ?>>Warga Negara Indonesia (WNI)</option>
                                                             <option value="WNA" <?php if($key['Warga_negara'] == 'WNA') echo 'selected="selected"'; ?>>Warga Negara Asing (WNA)</option>
                                                         </select>
@@ -215,7 +215,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Status Anak</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <select name="status_anak" class="form-control" >
+                                                        <select name="status_anak" class="form-control" required>
                                                             <option value="Kandung" <?php if($key['Status_anak'] == 'Kandung') echo 'selected="selected"'; ?>>Kandung</option>
                                                             <option value="Angkat" <?php if($key['Status_anak'] == 'Angkat') echo 'selected="selected"'; ?>>Angkat</option>
                                                         </select>
@@ -226,7 +226,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Alamat</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <textarea name="alamat" type="text" class="form-control"><?= $key['Alamat']; ?></textarea>
+                                                        <textarea name="alamat" type="text" class="form-control" required><?= $key['Alamat']; ?></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -257,7 +257,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Anak Ke</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="anak_ke" type="number" class="form-control" value="<?= $key['Anak_ke']; ?>" placeholder=" Contoh: 1">
+                                                        <input name="anak_ke" type="number" class="form-control" value="<?= $key['Anak_ke']; ?>" placeholder=" Contoh: 1" required>
                                                     </div>
                                                 </div>
 
@@ -265,7 +265,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Jml Saudara</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <input name="jumlah_saudara" type="number" class="form-control" value="<?= $key['Jumlah_saudara']; ?>" placeholder=" Contoh: 1">
+                                                        <input name="jumlah_saudara" type="number" class="form-control" value="<?= $key['Jumlah_saudara']; ?>" placeholder=" Contoh: 1" required>
                                                     </div>
                                                 </div>
 
@@ -273,7 +273,7 @@
                                                     <label class="control-label col-md-3 col-sm-3 col-xs-12">Gol Darah</label>
 
                                                     <div class="col-md-9 col-sm-9 col-xs-12">
-                                                        <select name="golongan_darah" class="form-control" >
+                                                        <select name="golongan_darah" class="form-control" required>
                                                             <option value="A" <?php if($key['Golongan_darah'] == 'A') echo 'selected="selected"'; ?>>A</option>
                                                             <option value="B" <?php if($key['Golongan_darah'] == 'B') echo 'selected="selected"'; ?>>B</option>
                                                             <option value="AB" <?php if($key['Golongan_darah'] == 'AB') echo 'selected="selected"'; ?>>AB</option>
@@ -596,7 +596,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">NIS</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="nis" type="text" class="form-control">
+                                                <input name="nis" type="text" class="form-control" required>
                                             </div>
                                         </div>
 
@@ -612,7 +612,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="nama" type="text" class="form-control">
+                                                <input name="nama" type="text" class="form-control" required>
                                             </div>
                                         </div>
 
@@ -620,7 +620,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tempat Lahir</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="tempat_lahir" type="text" class="form-control" placeholder=" Contoh: Jakarta">
+                                                <input name="tempat_lahir" type="text" class="form-control" placeholder=" Contoh: Jakarta" required>
                                             </div>
                                         </div>
 
@@ -628,7 +628,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tanggal Lahir</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="tanggal_lahir" type="date" class="form-control">
+                                                <input name="tanggal_lahir" type="date" class="form-control" required>
                                             </div>
                                         </div>
 
@@ -683,7 +683,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Nama Ibu</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="nama_ibu" type="text" class="form-control">
+                                                <input name="nama_ibu" type="text" class="form-control" required>
                                             </div>
                                         </div>
 
@@ -691,7 +691,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Kewarga negaraan</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="kewarganegaraan" type="text" class="form-control" placeholder=" Contoh: Indonesia">
+                                                <input name="kewarganegaraan" type="text" class="form-control" placeholder=" Contoh: Indonesia" required>
                                             </div>
                                         </div>
 
@@ -754,7 +754,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Anak Ke</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="anak_ke" type="number" class="form-control" placeholder=" Contoh: 1">
+                                                <input name="anak_ke" type="number" class="form-control" placeholder=" Contoh: 1" required>
                                             </div>
                                         </div>
 
@@ -762,7 +762,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Jumlah Saudara</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="jumlah_saudara" type="number" class="form-control" placeholder=" Contoh: 1">
+                                                <input name="jumlah_saudara" type="number" class="form-control" placeholder=" Contoh: 1" required>
                                             </div>
                                         </div>
 

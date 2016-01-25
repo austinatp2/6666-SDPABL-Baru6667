@@ -13,13 +13,9 @@ $jmllat = 0;
         <td>&nbsp; : &nbsp;</td>
         <td>
           <?php
-          foreach ($data_jadwal as $key_jadwal) {
-            foreach ($data_mapel as $key_mapel) {
-              if ($key_mapel['kd_mapel']==$key_jadwal['kd_mapel']) {
-                echo $key_mapel['nm_mapel'];
+            foreach ($isi_siswa as $key_siswa) {
+                echo $key_siswa['Nama'];
               }
-            }
-          }
           ?>
         </td>
       </tr>
@@ -28,12 +24,8 @@ $jmllat = 0;
         <td>&nbsp; : &nbsp;</td>
         <td>
           <?php
-          foreach ($data_jadwal as $key_jadwal) {
-            foreach ($data_kelas as $key_kelas) {
-              if ($key_kelas['kd_kelas']==$key_jadwal['kd_kelas']) {
-                echo $key_kelas['nm_kelas'];
-              }
-            }
+          foreach ($data_kelas as $key_kelas) {
+            echo $key_kelas['nm_kelas'];
           }
           ?>
         </td>
@@ -58,9 +50,7 @@ $jmllat = 0;
         <td>&nbsp; : &nbsp;</td>
         <td>
           <?php
-          foreach ($data_jadwal as $key_jadwal) {
-            echo $key_jadwal['semester']." - ".$key_jadwal['thn_ajar'];
-          }
+          echo $this->uri->segment(4).' - '.$this->uri->segment(5).'/'.$this->uri->segment(6);
           ?>
         </td>
       </tr>

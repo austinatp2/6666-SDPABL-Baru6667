@@ -107,8 +107,8 @@
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">Level</label>
 
                                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                                            <select name="level" class="form-control">
-                                                                <option>Pilih Level</option>
+                                                            <select name="level" class="form-control" required>
+                                                                <option value="" disabled hidden>Pilih Level</option>
                                                                 <option value="admin" <?php if($key2['level'] == 'admin') echo 'selected="selected"'; ?>>Admin</option>
                                                                 <option value="guru_kelas" <?php if($key2['level'] == 'guru_kelas') echo 'selected="selected"'; ?>>Guru Kelas</option>
                                                                 <option value="guru_mapel" <?php if($key2['level'] == 'guru_mapel') echo 'selected="selected"'; ?>>Guru Mapel</option>
@@ -123,7 +123,7 @@
                                                         <label class="control-label col-md-3 col-sm-3 col-xs-12">New Password</label>
 
                                                         <div class="col-md-9 col-sm-9 col-xs-12">
-                                                            <input name="password" type="text" class="form-control">
+                                                            <input name="password" type="password" class="form-control" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -182,8 +182,8 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">User</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select name="user" class="form-control">
-                                                    <option>Pilih User</option>
+                                                <select name="user" class="form-control" required>
+                                                    <option value="" disabled selected hidden>Pilih User</option>
 
                                                     <?php
 
@@ -201,8 +201,8 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Level</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select name="level" class="form-control">
-                                                    <option>Pilih Level</option>
+                                                <select name="level" class="form-control" required>
+                                                    <option value="" disabled selected hidden>Pilih Level</option>
                                                     <option value="admin">Admin</option>
                                                     <option value="guru">Guru</option>
                                                 </select>
@@ -215,7 +215,7 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Password</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <input name="password" type="text" class="form-control">
+                                                <input name="password" type="password" class="form-control" required>
                                             </div>
                                         </div>
                                     </div>

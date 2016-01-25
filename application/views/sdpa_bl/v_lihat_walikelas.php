@@ -108,7 +108,7 @@
 
                                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                                             <select name="tahun_ajar_wali" class="form-control" value="<?= $key['Tahun_ajar_wali']; ?>">
-                                                                <option>Pilih Tahun Ajar</option>
+                                                                <option value="" disabled hidden>Pilih Tahun Ajar</option>
                                                                     <?php
                                                                         for ($i=2010; $i<=2020 ; $i++) { $b = $i+1; $a = $i."/".$b;
                                                                     ?>
@@ -125,15 +125,17 @@
 
                                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                                             <select name="employee_id" class="form-control">
-                                                                <option>Pilih Employee ID</option>
+                                                                <option value="" disabled hidden>Pilih Employee ID</option>
 
                                                                 <?php
 
                                                                     foreach ($isi2 as $key2) {
+                                                                        if ($key2['employee_id'] == $key['Employee_id']) {
                                                                 ?>
-                                                                        <option value="<?= $key2['employee_id'] ?>"><?= $key2['employee_id']?> - <?= $key2['nama_guru']?></option>
+                                                                        <option value="<?= $key2['employee_id']; ?>" selected><?= $key2['employee_id']?> - <?= $key2['nama_guru']?></option>
                                                                 <?php
                                                                     }
+                                                                }
                                                                 ?>
                                                             </select>
                                                         </div>
@@ -147,7 +149,7 @@
 
                                                         <div class="col-md-9 col-sm-9 col-xs-12">
                                                             <select name="kd_kelas" class="form-control" value="<?= $key['Kd_kelas']; ?>">
-                                                                <option>Pilih Kelas</option>
+                                                                <option value="" disabled hidden>Pilih Kelas</option>
 
                                                                 <?php
 
@@ -215,8 +217,8 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Tahun Ajar Wali</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select name="tahun_ajar_wali" class="form-control">
-                                                    <option>Pilih Tahun Ajar</option>
+                                                <select name="tahun_ajar_wali" class="form-control" required>
+                                                    <option value="" disabled selected hidden>Pilih Tahun Ajar</option>
 
                                                     <?php
                                                         for ($i=2010; $i<=2020 ; $i++) {
@@ -233,8 +235,8 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Employee ID</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select name="employee_id" class="form-control">
-                                                    <option>Pilih Employee ID</option>
+                                                <select name="employee_id" class="form-control" required>
+                                                    <option value="" disabled selected hidden>Pilih Employee ID</option>
 
                                                     <?php
 
@@ -255,8 +257,8 @@
                                             <label class="control-label col-md-3 col-sm-3 col-xs-12">Kode Kelas</label>
 
                                             <div class="col-md-9 col-sm-9 col-xs-12">
-                                                <select name="kd_kelas" class="form-control">
-                                                    <option>Pilih Kelas</option>
+                                                <select name="kd_kelas" class="form-control" required>
+                                                    <option value="" disabled selected hidden>Pilih Kelas</option>
 
                                                     <?php
 
