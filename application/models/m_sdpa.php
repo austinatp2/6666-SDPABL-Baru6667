@@ -123,14 +123,17 @@ class M_sdpa extends CI_Model {
 	public function getUser2($where = "") {
 		$data = $this->db->query('select * from user a, guru b '.$where);
 		return $data->result_array();
-
 	}
 
 	// Walikelas data siswa
 	public function getWalikelasDataSiswa($where = "") {
 		$data = $this->db->query('select * from guru a, kelas b, siswa c, peserta d, walikelas e '.$where);
 		return $data->result_array();
+	}
 
+	public function getWalikelasRaportSiswa($where = "") {
+		$data = $this->db->query('select * from guru a, kelas b, siswa c, peserta d, walikelas e, hasil_akhir f, mapel g, jadwal h '.$where);
+		return $data->result_array();
 	}
 
 	public function getLatihanTerm($table, $where = "") {
